@@ -1,0 +1,20 @@
+.Player {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  margin: 0.1rem;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+}
+.Name {
+  color: red;
+}
+
+.Country {
+  color: blue;
+}
+
+.Searches {
+  color: grey;
+}
