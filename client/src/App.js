@@ -1,24 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useEffect, useState } from "react";
+import useLocalStorage from "./hooks/useLocalStorage";
+import useAPI from "./hooks/useAPI";
+import Players from "./components/Players";
 
 function App() {
+  const endpoints = { players: "http://localhost:5000/api/players" };
+  const [readStorage, writeStorage] = useLocalStorage("wwcPlayers", {
+    athletes: []
+  });
+  const [apiState, getPlayers] = useAPI(endpoints["players"], writeStorage);
+  const [started, setStarted] = useState(false);
+  const httpStatus = apiState.status;
+  const latest = String(Date());
+
+  useEffect(() => {
+    if (started) return;
+    setStarted(true);
+    getPlayers();
+  }, [httpStatus, getPlayers, started]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Players
+        lastUpdated={latest}
+        apiState={apiState}
+        athletes={readStorage.wwcPlayers || []}
+        loaded={readStorage.wwcPlayers ? true : false}
+      />
     </div>
   );
 }
