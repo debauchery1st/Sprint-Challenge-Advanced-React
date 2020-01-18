@@ -3,7 +3,7 @@ import "./SortBar.css";
 const SortBar = props => {
   const handleClick = sortBy => {
     console.log(sortBy);
-    props.sortObjArr(sortBy);
+    props.handleSort(sortBy);
   };
   return (
     <span className="SortBar">

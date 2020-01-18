@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import useLocalStorage from "./hooks/useLocalStorage";
 import useAPI from "./hooks/useAPI";
+import useSorter from "./hooks/useSorter";
 import Players from "./components/Players";
 
 function App() {
@@ -13,20 +14,25 @@ function App() {
   const [started, setStarted] = useState(false);
   const httpStatus = apiState.status;
   const latest = String(Date());
+  const [sorter, updateList] = useSorter({
+    sortByKey: "name",
+    sortOrder: "asc",
+    unsorted: apiState.data || []
+  });
 
   useEffect(() => {
     if (started) return;
     setStarted(true);
     getPlayers();
-  }, [httpStatus, getPlayers, started]);
+  }, [httpStatus, getPlayers, started, apiState.data, updateList]);
 
   return (
     <div className="App">
       <Players
         lastUpdated={latest}
         apiState={apiState}
-        athletes={readStorage.wwcPlayers || []}
         loaded={readStorage.wwcPlayers ? true : false}
+        sorter={sorter}
       />
     </div>
   );

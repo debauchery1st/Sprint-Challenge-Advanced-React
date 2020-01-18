@@ -2,13 +2,16 @@ import React from "react";
 import Player from "./Player";
 import SortBar from "./SortBar";
 import "./Players.css";
+
 class Players extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       loaded: false,
       theme: "",
-      sorted: []
+      sorted: [],
+      sorter: props.sorter,
+      order: { name: "asc", country: "asc", searches: "asc" }
     };
   }
   Athletes = () =>
@@ -26,7 +29,7 @@ class Players extends React.Component {
     clone.loaded = this.props.loaded;
     this.setState(clone);
   }
-  sortKeys = () =>
+  getCategories = () =>
     (this.Athletes() &&
       Object.keys(this.Athletes()[0]).filter(name => name !== "id")) ||
     [];
@@ -36,14 +39,15 @@ class Players extends React.Component {
       ? this.Athletes().map((a, i) => <Player key={i} stats={a} />)
       : "";
 
-  sortObjArr = strKey => {
-    const sortedAthletes = this.Athletes().sort(
-      (a, b) => a[strKey].charCodeAt(0) - b[strKey][0].charCodeAt(0)
-    );
+  handleSort = strKey => {
+    const sorted = this.props.sorter(strKey, this.Athletes());
+    // const sorted = this.state.sorter.sortList(strKey, this.Athletes());
     const clone = { ...this.state };
-    clone.sorted = sortedAthletes;
+    clone.sorted = sorted;
     this.setState(clone);
+    return sorted;
   };
+
   render() {
     return (
       <section
@@ -53,7 +57,7 @@ class Players extends React.Component {
             : "Players"
         }
       >
-        <SortBar sortKeys={this.sortKeys()} sortObjArr={this.sortObjArr} />
+        <SortBar sortKeys={this.getCategories()} handleSort={this.handleSort} />
         {this.listAthletes()}
       </section>
     );

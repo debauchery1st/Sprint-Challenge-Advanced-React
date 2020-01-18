@@ -9,7 +9,7 @@ const Player = ({ stats }) => {
     <span className="Player">
       <span className="Name">{name}</span>
       <span className="Country">{country}</span>
-      <span className="Searches"> {searches}</span>
+      <span className="Searches">{searches}</span>
     </span>
   );
 };
