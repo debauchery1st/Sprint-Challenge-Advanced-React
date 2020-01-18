@@ -1,0 +1,10 @@
+.Players {
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+  background-color: skyblue;
+}
+
+.Players-Dark-Mode {
+  background-color: black;
+}

@@ -1,7 +1,7 @@
 import React from "react";
 import Player from "./Player";
 import SortBar from "./SortBar";
-import "./Players.css";
+import "./styles/Players.css";
 
 class Players extends React.Component {
   constructor(props) {
@@ -40,12 +40,11 @@ class Players extends React.Component {
       : "";
 
   handleSort = strKey => {
-    const sorted = this.props.sorter(strKey, this.Athletes());
-    // const sorted = this.state.sorter.sortList(strKey, this.Athletes());
-    const clone = { ...this.state };
-    clone.sorted = sorted;
-    this.setState(clone);
-    return sorted;
+    this.setState({
+      ...this.state,
+      sorted: this.props.sorter(strKey, this.Athletes())
+    });
+    return this.state.sorted;
   };
 
   render() {

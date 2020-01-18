@@ -12,3 +12,28 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.App {
+  display: flex;
+  flex-flow: column;
+  justify-self: center;
+  background-color: teal;
+}
+
+.Test-Hook {
+  display: flex;
+  border: 0.05rem solid whitesmoke;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  text-align: center;
+  justify-content: center;
+  width: 360px;
+  letter-spacing: 2px;
+  background-color: grey;
+  color: whitesmoke;
+}
+.Test-Hook:hover {
+  background-color: whitesmoke;
+  color: grey;
+}

@@ -1,0 +1,42 @@
+.Player {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem;
+  width: 18rem;
+  /* height: 10rem; */
+  margin: 0.1rem;
+  /* border: 1px solid lightgrey;
+  background-color: #df8543; */
+  /* border-radius: 0.5rem; */
+}
+.Name {
+  display: flex;
+  justify-content: center;
+  padding: 1.3rem;
+  border-radius: 0.4rem;
+  /* background-color: #9d2503;
+  color: lightgrey;
+  width: 100%; */
+}
+
+.Country {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.5rem;
+  letter-spacing: 0.1rem;
+  /* color: darkslategrey; */
+  padding: 0.4rem;
+  margin: 0.2rem;
+  /* background-color: #7fa998; */
+  /* border-radius: 0.4rem; */
+  /* border: 1px solid black; */
+}
+
+.Searches {
+  display: flex;
+  padding: 0.5rem;
+  /* color: grey; */
+}
