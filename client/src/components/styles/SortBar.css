@@ -5,25 +5,10 @@
   width: 100vw;
   align-items: center;
   padding: 0.5rem;
-  margin: 0.1rem;
-  border: 1px solid black;
+  margin: 0.2rem;
+  /* border: 1px solid black; */
   border-radius: 0.5rem;
 }
 .Category {
-  background-color: grey;
   letter-spacing: 2px;
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 20px 42px 0 rgba(0, 0, 0, 0.2), 0 13px 13px 0 rgba(0, 0, 0, 0.2);
-  color: whitesmoke;
-  cursor: pointer;
-  border: 1px solid grey;
-}
-.Category:hover {
-  color: grey;
-  background-color: whitesmoke;
-}
-.Category:active {
-  box-shadow: 0 12px 24px 0 rgba(0, 0, 0, 0.2), 0 9px 9px 0 rgba(0, 0, 0, 0.2);
-  border: 1px solid red;
 }

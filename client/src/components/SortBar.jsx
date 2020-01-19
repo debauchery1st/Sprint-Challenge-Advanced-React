@@ -8,13 +8,13 @@ const SortBar = props => {
   return (
     <span className="SortBar">
       {props.sortKeys.map((category, idx) => (
-        <span
-          className="Category"
+        <button
           key={idx}
+          className="f5 grow no-underline ba bw1 ph3 pv2 mb2 dib dark-grey"
           onClick={() => handleClick(category)}
         >
           {category.toUpperCase()}
-        </span>
+        </button>
       ))}
     </span>
   );

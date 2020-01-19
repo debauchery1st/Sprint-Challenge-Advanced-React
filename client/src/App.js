@@ -43,9 +43,9 @@ function App() {
 
   return (
     <div className="App">
-      <span className="Test-Hook" onClick={refreshRing}>
-        refresh the API Ring
-      </span>
+      <button onClick={refreshRing} className="no-underline near-white bg-animate bg-near-black hover-bg-gray inline-flex items-center ma2 tc br2 pa2" title="TESTING">
+    <span class="f6 ml3 pr2">refresh API ring</span>
+  </button>
       <NavigationBar menufrom={apiRing} />
       <Players
         lastUpdated={String(Date())}
