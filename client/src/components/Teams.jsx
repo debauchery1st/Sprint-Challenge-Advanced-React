@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Team from "./Team";
+import "./styles/Teams.css";
 
 const Teams = ({ teamList, refreshAPI }) => {
   const [teams, setTeams] = useState([...teamList()]);

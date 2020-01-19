@@ -1,0 +1,10 @@
+.Teams {
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+  background-color: skyblue;
+}
+
+.Teams-Dark-Mode {
+  background-color: black;
+}

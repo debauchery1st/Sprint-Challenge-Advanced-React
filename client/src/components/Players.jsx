@@ -49,7 +49,7 @@ class Players extends React.Component {
 
   render() {
     return (
-      <section
+      <span
         className={
           this.state.theme.length > 0
             ? ["Players", "-", this.state.theme].join("")
@@ -58,7 +58,7 @@ class Players extends React.Component {
       >
         <SortBar sortKeys={this.getCategories()} handleSort={this.handleSort} />
         {this.listAthletes()}
-      </section>
+      </span>
     );
   }
 }

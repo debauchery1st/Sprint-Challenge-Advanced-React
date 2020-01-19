@@ -1,6 +1,6 @@
 import React from "react";
 import CountryFlag from "./CountryFlag";
-
+import "./styles/Team.css";
 const Team = ({ api }) => {
   // console.log(api);
   const {
@@ -12,9 +12,9 @@ const Team = ({ api }) => {
     // group_letter
   } = api;
   return (
-    <li>
-      {fifa_code} - <CountryFlag name={country} /> {country}
-    </li>
+    <article className="Team mw5 center bg-white br3 pa3 pa4-ns mv3 ba b--black-10">
+      {fifa_code} <CountryFlag name={country} /> {country}
+    </article>
   );
 };
 

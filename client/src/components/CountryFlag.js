@@ -19,10 +19,22 @@ const countries = [
   { name: "Norway", code: "NO" },
   { name: "Spain", code: "ES" },
   { name: "Sweden", code: "SE" },
-  { name: "United States", code: "US" }
+  { name: "United States", code: "US" },
+  { name: "New Zealand", code: "NZ" },
+  { name: "Korea Republic", code: "KR" },
+  { name: "Thailand", code: "TH" },
+  { name: "China PR", code: "CN" },
+  { name: "Japan", code: "JP" },
+  { name: "South Africa", code: "ZA" },
+  { name: "Cameroon", code: "CM" },
+  { name: "Jamaica", code: "JM" },
+  { name: "USA", code: "US" },
+  { name: "Nigeria", code: "NG" }
 ];
 
 const flagCodes = (name, size) => {
+  if (name === "Scotland")
+    return "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Flag_of_Scotland.svg/64px-Flag_of_Scotland.svg.png";
   // return a flag img for country name.
   const country = countries.find(country => country.name === name);
   if (country)
