@@ -10,7 +10,7 @@ const useAPI = (apiPath, writeFn, returnAsObj) => {
         setApiState(resp);
         writeFn(resp.data);
       })
-      .catch(err => alert(err));
+      .catch(err => console.log(err));
   // returns a function that calls the api  + calls writeStorage with the response data
   if (!returnAsObj) return [apiState, getFromAPI];
   return {

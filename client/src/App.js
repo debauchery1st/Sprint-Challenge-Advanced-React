@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-
+import { Switch, Route } from "react-router-dom";
 // api management
 import getEndPoints from "./endpoints";
 import { ringUseAPI } from "./hooks/useAPI";
@@ -13,6 +13,8 @@ import useLocalKeyRing from "./hooks/useLocalKeyRing";
 import useSorter from "./hooks/useSorter";
 import Players from "./components/Players";
 import NavigationBar from "./components/NavigationBar";
+import Teams from "./components/Teams";
+
 function App() {
   const [alreadyStarted, setAlreadyStarted] = useState(false);
   const endpoints = getEndPoints();
@@ -26,11 +28,13 @@ function App() {
     sortOrder: "asc",
     unsorted: apiRing.players.api.state.data || []
   });
-
+  const teamList = () =>
+    apiRing.teams.local.reader.teams ? apiRing.teams.local.reader.teams : [];
   useEffect(() => {
     if (alreadyStarted) return;
     setAlreadyStarted(true);
     apiRing.players.api.get();
+    apiRing.teams.api.get();
   }, [alreadyStarted, apiRing]);
 
   const refreshRing = namedKey => {
@@ -43,17 +47,32 @@ function App() {
 
   return (
     <div className="App">
-      <button onClick={refreshRing} className="no-underline near-white bg-animate bg-near-black hover-bg-gray inline-flex items-center ma2 tc br2 pa2" title="TESTING">
-    <span class="f6 ml3 pr2">refresh API ring</span>
-  </button>
+      <button
+        onClick={refreshRing}
+        className="no-underline near-white bg-animate bg-near-black hover-bg-gray inline-flex items-center ma2 tc br2 pa2"
+        title="TESTING"
+      >
+        <span className="f6 ml3 pr2">refresh API ring</span>
+      </button>
       <NavigationBar menufrom={apiRing} />
-      <Players
-        lastUpdated={String(Date())}
-        apiState={apiRing.players.api.state}
-        loaded={true}
-        sorter={sorter}
-        refreshAPI={refreshRing}
-      />
+      <Switch>
+        <Route path="/" exact>
+          <Players
+            lastUpdated={String(Date())}
+            apiState={apiRing.players.api.state}
+            loaded={true}
+            sorter={sorter}
+            refreshAPI={refreshRing}
+          />
+        </Route>
+        <Route path="/teams" exact>
+          <Teams
+            loaded={true}
+            teamList={teamList}
+            refreshAPI={() => refreshRing("teams")}
+          />
+        </Route>
+      </Switch>
     </div>
   );
 }

@@ -1,39 +1,40 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import "tachyons";
 
 const NavigationBar = props => {
   return (
-    <nav class="bt bb tc mw7 center mt4">
-      <a
-        class="f6 f5-l link bg-animate black-80 hover-bg-lightest-blue dib pa3 ph4-l"
-        href="/"
+    <nav className="bt bb tc mw7 center mt4">
+      <NavLink
+        className="f6 f5-l link bg-animate black-80 hover-bg-lightest-blue dib pa3 ph4-l"
+        to="/"
       >
         Home
-      </a>
-      <a
-        class="f6 f5-l link bg-animate black-80 hover-bg-light-green dib pa3 ph4-l"
-        href="/portfolio"
+      </NavLink>
+      <NavLink
+        className="f6 f5-l link bg-animate black-80 hover-bg-light-green dib pa3 ph4-l"
+        to="/teams"
       >
-        Portfolio
-      </a>
-      <a
-        class="f6 f5-l link bg-animate black-80 hover-bg-light-blue dib pa3 ph4-l"
-        href="/shop"
+        Teams
+      </NavLink>
+      <NavLink
+        className="f6 f5-l link bg-animate black-80 hover-bg-light-blue dib pa3 ph4-l"
+        to="/"
       >
         Shop
-      </a>
-      <a
-        class="f6 f5-l link bg-animate black-80 hover-bg-light-pink dib pa3 ph4-l"
-        href="/about"
+      </NavLink>
+      <NavLink
+        className="f6 f5-l link bg-animate black-80 hover-bg-light-pink dib pa3 ph4-l"
+        to="/about"
       >
         About
-      </a>
-      <a
-        class="f6 f5-l link bg-animate black-80 hover-bg-light-yellow dib pa3 ph4-l"
-        href="/contact"
+      </NavLink>
+      <NavLink
+        className="f6 f5-l link bg-animate black-80 hover-bg-light-yellow dib pa3 ph4-l"
+        to="/contact"
       >
         Contact
-      </a>
+      </NavLink>
     </nav>
   );
 };
