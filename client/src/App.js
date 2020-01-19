@@ -14,27 +14,40 @@ import useSorter from "./hooks/useSorter";
 import Players from "./components/Players";
 import NavigationBar from "./components/NavigationBar";
 import Teams from "./components/Teams";
+import Matches from "./components/Matches";
 
 function App() {
   const [alreadyStarted, setAlreadyStarted] = useState(false);
   const endpoints = getEndPoints();
-  const keyRing = useLocalKeyRing(
-    Object.keys(endpoints.wordlcupAPI),
-    useLocalStorage
+  const apiRing = ringUseAPI(
+    useLocalKeyRing(Object.keys(endpoints.wordlcupAPI), useLocalStorage),
+    endpoints.wordlcupAPI
   );
-  const apiRing = ringUseAPI(keyRing, endpoints.wordlcupAPI);
   const [sorter] = useSorter({
     sortByKey: "name",
     sortOrder: "asc",
     unsorted: apiRing.players.api.state.data || []
   });
-  const teamList = () =>
-    apiRing.teams.local.reader.teams ? apiRing.teams.local.reader.teams : [];
+  const teamList = () => {
+    const localSource = apiRing.teams.local.reader.teams
+      ? apiRing.teams.local.reader.teams
+      : [];
+    const remoteSource = apiRing.teams.api.state.data;
+    return remoteSource || localSource;
+  };
+  const matchList = () => {
+    const localSource = apiRing.matches.local.reader.matches
+      ? apiRing.matches.local.reader.matches
+      : [];
+    const remoteSource = apiRing.matches.api.state.data;
+    return remoteSource || localSource;
+  };
   useEffect(() => {
     if (alreadyStarted) return;
     setAlreadyStarted(true);
     apiRing.players.api.get();
     apiRing.teams.api.get();
+    apiRing.matches.api.get();
   }, [alreadyStarted, apiRing]);
 
   const refreshRing = namedKey => {
@@ -44,16 +57,20 @@ function App() {
     }
     apiRing[namedKey].api.get();
   };
-
+  const DEBUG_API = false;
   return (
     <div className="App">
-      <button
-        onClick={refreshRing}
-        className="no-underline near-white bg-animate bg-near-black hover-bg-gray inline-flex items-center ma2 tc br2 pa2"
-        title="TESTING"
-      >
-        <span className="f6 ml3 pr2">refresh API ring</span>
-      </button>
+      {DEBUG_API ? (
+        <button
+          onClick={refreshRing}
+          className="no-underline near-white bg-animate bg-near-black hover-bg-gray inline-flex items-center ma2 tc br2 pa2"
+          title="TESTING"
+        >
+          <span className="f6 ml3 pr2">refresh API ring</span>
+        </button>
+      ) : (
+        ""
+      )}
       <NavigationBar menufrom={apiRing} />
       <Switch>
         <Route path="/" exact>
@@ -66,10 +83,12 @@ function App() {
           />
         </Route>
         <Route path="/teams" exact>
-          <Teams
-            loaded={true}
-            teamList={teamList}
-            refreshAPI={() => refreshRing("teams")}
+          <Teams teamList={teamList} refreshAPI={() => refreshRing("teams")} />
+        </Route>
+        <Route path="/matches">
+          <Matches
+            matchList={matchList}
+            refreshAPI={() => refreshRing("matches")}
           />
         </Route>
       </Switch>

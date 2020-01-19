@@ -9,7 +9,7 @@ const NavigationBar = props => {
         className="f6 f5-l link bg-animate black-80 hover-bg-lightest-blue dib pa3 ph4-l"
         to="/"
       >
-        Home
+        Players
       </NavLink>
       <NavLink
         className="f6 f5-l link bg-animate black-80 hover-bg-light-green dib pa3 ph4-l"
@@ -19,9 +19,9 @@ const NavigationBar = props => {
       </NavLink>
       <NavLink
         className="f6 f5-l link bg-animate black-80 hover-bg-light-blue dib pa3 ph4-l"
-        to="/"
+        to="/matches"
       >
-        Shop
+        Matches
       </NavLink>
       <NavLink
         className="f6 f5-l link bg-animate black-80 hover-bg-light-pink dib pa3 ph4-l"

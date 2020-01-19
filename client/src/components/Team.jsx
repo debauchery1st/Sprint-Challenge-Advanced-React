@@ -1,4 +1,5 @@
 import React from "react";
+import CountryFlag from "./CountryFlag";
 
 const Team = ({ api }) => {
   // console.log(api);
@@ -12,7 +13,7 @@ const Team = ({ api }) => {
   } = api;
   return (
     <li>
-      {fifa_code} - {country}
+      {fifa_code} - <CountryFlag name={country} /> {country}
     </li>
   );
 };
